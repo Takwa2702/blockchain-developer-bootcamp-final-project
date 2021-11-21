@@ -1,16 +1,23 @@
 # Final Project -  Music Blockchain-based System
 
-# Deployed version url:
+## Deployed version url:
 
 
-# How to run this project locally:
- "## Prerequisites"
+## How to run this project locally:
+ ### Prerequisites
    - Node.js >= v14
    - Truffle and Ganache
    - Yarn
    - git checkout master
- "## Contracts"
- 
+   
+ ### Contracts
+   - Run yarn install in project root to install Truffle build and smart contract dependencies
+   - Run local testnet in port 7545 with an Ethereum client, e.g. Ganache
+   - truffle migrate --network development
+   - truffle console --network development
+   - Run tests in Truffle console: test
+   - development network id is 1337, remember to change it in Metamask as well!
+
 
 
 # Music Blockchain-based System
