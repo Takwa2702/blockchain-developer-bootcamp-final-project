@@ -1,12 +1,18 @@
-# Music Blockchain-based System
-Artists may submit original compositions, self-publish, control license choices, and manage distributes on the Ethereum-based music blockchain system. The Ethereum platform facilitates music licensing by allowing musicians to be paid via smart contracts and cryptocurrency.
+# Final Project -  Music Blockchain-based System
+
+# Deployed version url:
+
 
 # How to run this project locally:
- ## Prerequisites
+ "## Prerequisites"
    - Node.js >= v14
    - Truffle and Ganache
    - Yarn
    - git checkout master
- ## Contracts
+ "## Contracts"
  
+
+
+# Music Blockchain-based System
+Artists may submit original compositions, self-publish, control license choices, and manage distributes on the Ethereum-based music blockchain system. The Ethereum platform facilitates music licensing by allowing musicians to be paid via smart contracts and cryptocurrency.
 
