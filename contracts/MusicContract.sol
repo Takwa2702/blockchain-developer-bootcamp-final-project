@@ -94,7 +94,7 @@ contract MusicContract {
     /// @param _songId is an id of song
     /// @param _newName is a new creator name 
     /// @param _newcreator is a new adress of the song creator 
-    function changeSongCreator(uint _songId,string memory _newName , address payable _newcreator) internal isArtist(msg.sender) returns (bool){
+    function changeSongCreator(uint _songId,string memory _newName , address payable _newcreator) public isArtist(msg.sender) returns (bool){
        songs[_songId].creatorName = _newName;
        songs[_songId].creator = _newcreator;
        return true;
