@@ -12,6 +12,7 @@ contract("MusicContract", function ( accounts ) {
 
   const songName = "Start Again";
   const creatorName = "OneRepublic";
+  const newCreatorName = "OneRepublic ft. Logic"
   const genre = "Pop";
   const amountWei = web3.utils.toWei("0.05", "ether"); // 0.001 ether = 1000000000000000 wei
   const lastListener = "0x0000000000000000000000000000000000000000";
@@ -111,8 +112,28 @@ contract("MusicContract", function ( accounts ) {
       await catchRevert(mcInstance.addSong(songName, creatorName, genre, { from: listener }));
     });
 
+    it("Artist should change song's creator with provided song id, creator name, and creator address", async () => {
+      const tx = await mcInstance.changeSongCreator(0, newCreatorName, listener, { from: _artist });
+  
+      const result = await mcInstance.getSong.call(0);
+  
+      assert.equal(
+        result[1],
+        newCreatorName,
+        "the new creator's name does not match the expected value",
+      );
+    
+      assert.equal(
+        result[3],
+        listener,
+        "the creator's address should be changed to the new address (listener)",
+      );
+     
+     });
+
    });
 
-    
+ 
+
 
 });
