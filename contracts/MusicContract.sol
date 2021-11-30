@@ -11,7 +11,7 @@ pragma solidity >=0.5.16 <0.9.0;
 contract MusicContract {
    
     uint public songCount;
-    address public artist; //0x5B38Da6a701c568545dCfcB03FcB875f56beddC4;
+    address public artist; 
     
     struct Song {
         string sname;
