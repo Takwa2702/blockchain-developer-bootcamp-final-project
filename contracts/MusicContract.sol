@@ -5,8 +5,8 @@ pragma solidity >=0.5.16 <0.9.0;
 /**
  * @title Contract for music/songs  
  * @author Takua Mokhamed
- * @notice Allows an artists to put up their songs for selling the license for licining them
- * @dev Recyclables will be tracked and ether will be sent as a reward
+ * @notice Allows an artists to put up their songs for selling the license for listening them
+ * @dev Songs license for listening them will be purchased and ether will be sent to the artist (creator of the song)
  */
 contract MusicContract {
    
