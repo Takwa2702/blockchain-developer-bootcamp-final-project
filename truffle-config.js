@@ -17,11 +17,17 @@
  * phrase from a file you've .gitignored so it doesn't accidentally become public.
  *
  */
+//  require('dotenv').config();
+//  const HDWalletProvider = require('@truffle/hdwallet-provider');
 
-// const HDWalletProvider = require('@truffle/hdwallet-provider');
-//
+// const infuraKey = "";
+
 // const fs = require('fs');
 // const mnemonic = fs.readFileSync(".secret").toString().trim();
+
+const mnemonic = process.env.ACCOUNT_MNEMONIC;
+const network = process.env.RINKEBY_ENDPOINT;
+
 
 module.exports = {
   /**
@@ -41,11 +47,11 @@ module.exports = {
     // tab if you use this network and you must also set the `host`, `port` and `network_id`
     // options below to some value.
     //
-    // development: {
-    //  host: "127.0.0.1",     // Localhost (default: none)
-    //  port: 8545,            // Standard Ethereum port (default: none)
-    //  network_id: "*",       // Any network (default: none)
-    // },
+    local: {
+     host: "127.0.0.1",     // Localhost (default: none)
+     port: 8545,            // Standard Ethereum port (default: none)
+     network_id: "*",       // Any network (default: none)
+    },
     // Another network with more advanced options...
     // advanced: {
     // port: 8777,             // Custom port
@@ -58,12 +64,21 @@ module.exports = {
     // Useful for deploying to a public network.
     // NB: It's important to wrap the provider as a function.
     // ropsten: {
-    // provider: () => new HDWalletProvider(mnemonic, `https://ropsten.infura.io/v3/YOUR-PROJECT-ID`),
+    // provider: () => new HDWalletProvider(mnemonic, `https://ropsten.infura.io/${infuraKey}`),
     // network_id: 3,       // Ropsten's id
     // gas: 5500000,        // Ropsten has a lower block limit than mainnet
     // confirmations: 2,    // # of confs to wait between deployments. (default: 0)
     // timeoutBlocks: 200,  // # of blocks before a deployment times out  (minimum/default: 50)
     // skipDryRun: true     // Skip dry run before migrations? (default: false for public nets )
+    // },
+    // rinkeby: {
+    //   provider: () => new HDWalletProvider(mnemonic, network),
+    //   network_id: 4,       // Rinkeby's id
+    //   gas: 5500000,        
+    //   confirmations: 2,    // # of confs to wait between deployments. (default: 0)
+    //   timeoutBlocks: 200,  // # of blocks before a deployment times out  (minimum/default: 50)
+    //   skipDryRun: true,     // Skip dry run before migrations? (default: false for public nets )
+    //   networkCheckTimeout: 999999
     // },
     // Useful for private networks
     // private: {
