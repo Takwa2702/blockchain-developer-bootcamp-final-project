@@ -1,5 +1,5 @@
 {
-  "homepage": "https://github.com/Takwa2702/blockchain-developer-bootcamp-final-project",
+  "homepage": "http://takwa2702.github.io/blockchain-developer-bootcamp-final-project",
   "name": "client",
   "version": "0.1.0",
   "private": true,
@@ -12,7 +12,6 @@
     "@web3-react/core": "^6.1.9",
     "@web3-react/injected-connector": "^6.0.7",
     "bootstrap": "^5.1.3",
-    "gh-pages": "^3.2.3",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-modal": "^3.14.4",
@@ -47,5 +46,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "gh-pages": "^3.2.3"
   }
 }
