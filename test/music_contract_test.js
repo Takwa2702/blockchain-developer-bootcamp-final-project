@@ -12,7 +12,7 @@ contract("MusicContract", function ( accounts ) {
 
   const songName = "Start Again";
   const creatorName = "OneRepublic";
-  const newCreatorName = "OneRepublic ft. Logic"
+  // const newCreatorName = "OneRepublic ft. Logic"
   const genre = "Pop";
   const imageUrl = "https://i0.wp.com/dotunsblog.com.ng/wp-content/uploads/2018/05/One-Republic-–-Start-Again-Ft-Logic.jpg?resize=640%2C400&ssl=1";
   const audioUrl = "http://dotunsblog.com.ng/wp-content/uploads/2018/05/One_Republic_Ft_Logic_-_Start_Again_Dotunsblog.com.ng.mp3";

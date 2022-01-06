@@ -226,6 +226,11 @@ a:hover {
 .buyBtn:hover{
   background-color: #2a4d3edc;
 }
+.get-some-ether{
+  position: absolute;
+  top: 90px;
+  right: 20px;
+}
 
 /* .addBtn {
   display:block;

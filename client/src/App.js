@@ -36,13 +36,14 @@ function App() {
   const [genreInputByArtist, setGenreInputByArtist] = useState("");
   const [imagUrlInputByArtist, setImagUrlInputByArtist] = useState("");
   const [audioSrcInputByArtist, setAudioSrcInputByArtist] = useState("");
-
+  const [newAddressInputByArtist, setNewAddressInputByArtist] = useState("");
   const [message, setMessage] = useState("");
   // // const [status, setStatus] = useState("...");
 
   // const [addingRecyclable, setAddingRecyclable] = useState(false);
   // const [rewardingUser, setRewardingUser] = useState(false);
   const [requestingAddSong, setRequestingAddSong] = useState(false);
+  const [requestingChangingAddress, setRequestingChangingAddress] = useState(false);
   const [isloading, setLoading] =  useState(false);
 
   
@@ -143,6 +144,8 @@ function App() {
       const songCount = await musicContract.current.methods.songCount().call();
       setSongCount(songCount);
        
+      const lastListener = await musicContract.current.methods.lastListener().call();
+      setLastListener(lastListener);
       const user = await musicContract.current.methods.getListenerStatus(ethereum.selectedAddress).call();
 
       if(user === '1'){
@@ -183,7 +186,7 @@ function App() {
           songslist.push(song);
         }
 
-     console.log(songslist);  
+     console.log("Data Loaded Successfully");  
      setSongs(songslist);
      setLoading(false) 
     
@@ -221,17 +224,29 @@ function App() {
       event.preventDefault();
 
       const accounts = await web3.eth.getAccounts();
-      
+      showMessage(listOfMessages[2]);
+      NotificationManager.warning(message, 'Wating');
       await musicContract.current.methods
         .buySong()
         .send({
           from: accounts[0],
           value: subscriptionPrice,
+        },  function(error, result) {
+          if (error) {
+            console.log(`Error: transaction rejectd`);
+            setMessage(listOfMessages[5]);
+            NotificationManager.error(message, 'faild', 5000);
+          } else {
+            console.log('Success TX: <b>' + result + '</b>');
+            showMessage(listOfMessages[4]);
+            NotificationManager.success(message, 'Successfull');
+           
+          }
         });
-        showMessage(listOfMessages[4]);
-        NotificationManager.success(message, 'Title here');
+        // showMessage(listOfMessages[4]);
+        // NotificationManager.success(message, 'Successfull');
         window.location.reload(false);
-
+        console.log("Bueyd licence to listen the songs successfully");
   };
 
   const checkUserBalance = async () => {
@@ -257,20 +272,68 @@ function App() {
       setRequestingAddSong(true);
       showMessage(listOfMessages[2]);
      
-
+      NotificationManager.warning(message, 'Waiting', 7000);
       await musicContract.current.methods
         .addSong(songNameInputByArtist, creatorNameInputByArtist, genreInputByArtist, imagUrlInputByArtist, audioSrcInputByArtist)
         .send({
           from: artist,
-        });
-        NotificationManager.warning(message, 'Waiting', 5000);
-
-      showMessage(listOfMessages[3]);
+        },  function(error, result) {
+          if (error) {
+            console.log(`Error: transaction rejectd`);
+            setMessage(listOfMessages[5]);
+            NotificationManager.error(message, 'Faild', 5000);
+          } else {
+            console.log('Success TX: <b>' + result + '</b>');
+            showMessage(listOfMessages[3]);
+            NotificationManager.success(message, 'Successfull');
+           
+          } }) ;
+    
+      NotificationManager.warning(message, 'Waiting', 5000);
+      // showMessage(listOfMessages[3]);
       
       setRequestingAddSong(false);
-      NotificationManager.success(message, 'Successfull');
+      // NotificationManager.success(message, 'Successfull');
+
       window.location.reload(false);
+      console.log("New Song Added successfully"); 
+    }
+  };
+  const handleArtistAddressChangeSubmission = async (event) => {
+    event.preventDefault();
+    
+    if (newAddressInputByArtist === "") {
+      showMessage(listOfMessages[0]);
+      NotificationManager.error(message, 'Uncomplete');
+    } else {
+      setRequestingChangingAddress(true);
+      showMessage(listOfMessages[2]);
+     
+      NotificationManager.warning(message, 'Waiting', 7000);
+      await musicContract.current.methods
+        .changeArtistAddress(newAddressInputByArtist)
+        .send({
+          from: artist,
+        },  function(error, result) {
+          if (error) {
+            console.log(`Error: transaction rejectd`);
+            setMessage(listOfMessages[5]);
+            NotificationManager.error(message, 'Faild', 5000);
+          } else {
+            console.log('Success TX: <b>' + result + '</b>');
+            showMessage(listOfMessages[4]);
+            NotificationManager.success(message, 'Successfull');
+           
+          } }) ;
+    
+      NotificationManager.warning(message, 'Waiting', 5000);
+      // showMessage(listOfMessages[3]);
       
+      setRequestingChangingAddress(false);
+      // NotificationManager.success(message, 'Successfull');
+
+      window.location.reload(false);
+      console.log("Address of the artist changed successfully"); 
     }
   };
 
@@ -359,6 +422,7 @@ function App() {
              
             </section>
               <span className="address-card"><p> Your Address: {shortenAddress(ethereum.selectedAddress)} </p></span>
+              <span className="get-some-ether"><p> You can get some ethere from <br/> <a href="https://faucet.rinkeby.io/" target="_blank">Rinkeby Authenticated Faucet</a> </p></span>
               <span className="balance-card"><p> ETH balance: {parseFloat(userBalance).toFixed(4)} </p></span>
               <NotificationContainer/>
               {(hasPaid !== true) && (<button
@@ -466,6 +530,36 @@ function App() {
               </div>
             
             )} 
+             {artist.toLowerCase() === ethereum.selectedAddress && (
+              <div className="page-center">
+              <div className="artist-fill-form">
+                <form onSubmit={handleArtistAddressChangeSubmission}>
+                  <h4>Want to change artist's Address?</h4>
+                  <div className="input-area">
+                    <label>Enter a new Address:</label>{" "}
+                    <input
+                      value={newAddressInputByArtist}
+                      onChange={(event) =>
+                        setNewAddressInputByArtist(event.target.value)
+                      }
+                      required/>{" "}
+                  </div>
+                  <div className="input-area">
+                    <button
+                      className="btn primaryBtn"
+                      type="submit"
+                      disabled={requestingChangingAddress}
+                    >
+                      Submit Request
+                    </button>
+                  </div>
+                </form>
+               </div>
+               
+              </div>
+            
+            )} 
+     
 
         </div>
         

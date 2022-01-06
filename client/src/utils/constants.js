@@ -5,7 +5,7 @@ const listOfMessages = [
     "⏳ Waiting on transaction success...",
     "✅ Your song submission is successful",
     "✅ Your request is successful",
-    "✅ Reward has been successfully transfered"
+    "❌ Your request is faild"
   ];
   
   export {listOfMessages};
