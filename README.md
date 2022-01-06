@@ -37,7 +37,11 @@ https://takwa2702.github.io/blockchain-developer-bootcamp-final-project/
   - test: Tests for smart contracts.
 
 
-## Transaction Flow
+## Workflow
+
+If the user is not connected to Metamask they will be prompted to do so. After connecting to Metamask, the user can click on "Buy Permission to Listen Music" to buy the license for listening sogs uploaded by artist. Adding more, this action will save the address as user of the platform and unlock the music. so the 0.05 ether will be sent to the artist.
+
+As for artist, there are two main functionalities of the platform: adding song functionality and changing artist address functionality (the ownership transfered to anouther address).
 
 ## Environment variables for deploying on a testnet
     ACCOUNT_MNEMONIC=
