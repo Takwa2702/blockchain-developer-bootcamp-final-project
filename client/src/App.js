@@ -225,7 +225,7 @@ function App() {
 
       const accounts = await web3.eth.getAccounts();
       showMessage(listOfMessages[2]);
-      NotificationManager.warning(message, 'Wating');
+      NotificationManager.warning(message, 'Wating', 12000);
       await musicContract.current.methods
         .buySong()
         .send({
@@ -234,18 +234,19 @@ function App() {
         },  function(error, result) {
           if (error) {
             console.log(`Error: transaction rejectd`);
-            setMessage(listOfMessages[5]);
+            showMessage(listOfMessages[5]);
             NotificationManager.error(message, 'faild', 5000);
-          } else {
-            console.log('Success TX: <b>' + result + '</b>');
-            showMessage(listOfMessages[4]);
-            NotificationManager.success(message, 'Successfull');
+          } 
+          // else {
+          //   console.log('Success TX: <b>' + result + '</b>');
+          //   showMessage(listOfMessages[4]);
+          //   NotificationManager.success(message, 'Successfull');
            
-          }
+          // }
         });
-        // showMessage(listOfMessages[4]);
-        // NotificationManager.success(message, 'Successfull');
-        window.location.reload(false);
+        showMessage(listOfMessages[4]);
+        NotificationManager.success(message, 'Successfull');
+        window.setTimeout(function(){window.location.reload(false)},3000)
         console.log("Bueyd licence to listen the songs successfully");
   };
 
@@ -272,7 +273,7 @@ function App() {
       setRequestingAddSong(true);
       showMessage(listOfMessages[2]);
      
-      NotificationManager.warning(message, 'Waiting', 7000);
+      NotificationManager.warning(message, 'Waiting', 12000);
       await musicContract.current.methods
         .addSong(songNameInputByArtist, creatorNameInputByArtist, genreInputByArtist, imagUrlInputByArtist, audioSrcInputByArtist)
         .send({
@@ -280,25 +281,27 @@ function App() {
         },  function(error, result) {
           if (error) {
             console.log(`Error: transaction rejectd`);
-            setMessage(listOfMessages[5]);
+            showMessage(listOfMessages[5]);
             NotificationManager.error(message, 'Faild', 5000);
-          } else {
-            console.log('Success TX: <b>' + result + '</b>');
-            showMessage(listOfMessages[3]);
-            NotificationManager.success(message, 'Successfull');
+          } 
+          // else {
+          //   console.log('Success TX: <b>' + result + '</b>');
+            
            
-          } }) ;
+          // }
+         }) ;
     
-      NotificationManager.warning(message, 'Waiting', 5000);
-      // showMessage(listOfMessages[3]);
+      // NotificationManager.warning(message, 'Waiting', 5000);
+      showMessage(listOfMessages[3]);
+      NotificationManager.success(message, 'Successfull');
       
       setRequestingAddSong(false);
-      // NotificationManager.success(message, 'Successfull');
 
-      window.location.reload(false);
+      window.setTimeout(function(){window.location.reload(false)},3000)
       console.log("New Song Added successfully"); 
     }
   };
+
   const handleArtistAddressChangeSubmission = async (event) => {
     event.preventDefault();
     
@@ -309,7 +312,7 @@ function App() {
       setRequestingChangingAddress(true);
       showMessage(listOfMessages[2]);
      
-      NotificationManager.warning(message, 'Waiting', 7000);
+      NotificationManager.warning(message, 'Waiting', 12000);
       await musicContract.current.methods
         .changeArtistAddress(newAddressInputByArtist)
         .send({
@@ -317,22 +320,21 @@ function App() {
         },  function(error, result) {
           if (error) {
             console.log(`Error: transaction rejectd`);
-            setMessage(listOfMessages[5]);
+            showMessage(listOfMessages[5]);
             NotificationManager.error(message, 'Faild', 5000);
-          } else {
-            console.log('Success TX: <b>' + result + '</b>');
-            showMessage(listOfMessages[4]);
-            NotificationManager.success(message, 'Successfull');
-           
-          } }) ;
-    
-      NotificationManager.warning(message, 'Waiting', 5000);
-      // showMessage(listOfMessages[3]);
+          // } else {
+          //   console.log('Success TX: <b>' + result + '</b>');
+            // showMessage(listOfMessages[4]);
+            // NotificationManager.success(message, 'Successfull');
+           }
+           });
       
       setRequestingChangingAddress(false);
-      // NotificationManager.success(message, 'Successfull');
+      showMessage(listOfMessages[4]);
+      NotificationManager.success(message, 'Successfull');
 
-      window.location.reload(false);
+      // window.location.reload(false);
+      window.setTimeout(function(){window.location.reload(false)},3000)
       console.log("Address of the artist changed successfully"); 
     }
   };
