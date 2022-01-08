@@ -19,12 +19,11 @@ https://youtu.be/9rj4CDxD3eQ
    
  ### Contracts
    - Run yarn install in project root to install Truffle build and smart contract dependencies
-   - Run local testnet in port 8545 with an Ethereum client, e.g. Ganache
+   - Development network is Ganache running locally on port 7545 and has a network id of 5777
    - truffle migrate --network development
-   - truffle console --network development
-   - Run tests in Truffle console: test
-   - development network id is 5777, remember to change it in Metamask as well!
-
+   - truffle develop
+   - To deploy the contract on Ganache: migrate --development
+   - To run the tests: test
  ### Front-end
   - cd client
   - yarn install
