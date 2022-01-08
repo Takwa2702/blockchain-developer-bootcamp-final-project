@@ -6,7 +6,7 @@ Artists may submit original compositions, self-publish, control license choices,
 https://takwa2702.github.io/blockchain-developer-bootcamp-final-project/
 
 ## Screencast
-https://youtu.be/QyrHNjGbQYc
+https://youtu.be/9rj4CDxD3eQ
 
 ## Ethereum Address for Certification
 0x53e27218f314A233f49Cb278Db8A5a9a9d7Fe8a1
