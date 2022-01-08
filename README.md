@@ -19,7 +19,7 @@ https://youtu.be/9rj4CDxD3eQ
    
  ### Contracts
    - Run yarn install in project root to install Truffle build and smart contract dependencies
-   - Development network is Ganache running locally on port 7545 and has a network id of 5777
+   - Have a Ganache server running on port 8545 
    - truffle migrate --network development
    - truffle develop
    - To deploy the contract on Ganache: migrate --development
